@@ -1,16 +1,23 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import Navigation from "./components/layout/Navigation";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from "react-bootstrap";
+import UserContext from "./context/UserContext";
+import Routes from "./routes/Routes";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const [count, setCount] = useState(0);
 
-  return(
-    <div>
-
-    </div>
+  return (
+    <>
+      <UserContext>
+        <div className="header"><Header /></div>
+        <div className="body"><Routes /></div>
+        <div className="footer"><Footer /></div>
+      </UserContext>
+    </>
   );
 }
 
