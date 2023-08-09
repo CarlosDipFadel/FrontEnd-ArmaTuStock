@@ -1,15 +1,14 @@
-import { Route, Routes as Rutas} from "react-router-dom";
+import { Route, Routes as Rutas } from "react-router-dom";
 import Home from "../pages/home/Home";
 import { Container } from "react-bootstrap";
-import { Footer } from "react-bootstrap/lib/Modal";
 
 const Routes = () => {
   return (
-    <Footer>
+    <Container>
       <Rutas>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home />} />
       </Rutas>
-    </Footer>
+    </Container>
   );
 };
 

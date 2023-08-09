@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 import UserContext from "./context/UserContext";
 import Routes from "./routes/Routes";
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import FooterLayout from "./components/footer/FooterLayout";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,7 +15,7 @@ function App() {
       <UserContext>
         <div className="header"><Header /></div>
         <div className="body"><Routes /></div>
-        <div className="footer"><Footer /></div>
+        <div className="footer"><FooterLayout /></div>
       </UserContext>
     </>
   );
