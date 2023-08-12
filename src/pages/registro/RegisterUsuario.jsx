@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import logo from "../../img/Logo.png"
 import * as Yup from 'yup';
 import clsx from 'clsx';
 
@@ -61,12 +62,16 @@ const RegistrationForm = () => {
   };
   return (
     <div className="container mt-5">
-       {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+      {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
       {isRegistered ? (
         <div className="alert alert-success">Usuario registrado exitosamente</div>
       ) : (
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           <Form className="container mt-5 bg-white p-4 rounded">
+            <div className="d-flex justify-content-center mb-4">
+              <img src={logo} alt="Logo" className="img-fluid rounded-circle mt-4" style={{ maxWidth: '150px',  width: '100%', margin: '0 auto' }} />
+            </div>
+
             <div className="form-group">
               <label htmlFor="firstName">Nombre:</label>
               <Field type="text" id="firstName" name="firstName" className="form-control" />
