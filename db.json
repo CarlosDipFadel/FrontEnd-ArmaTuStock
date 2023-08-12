@@ -1,0 +1,40 @@
+{
+  "registers": [
+    {
+      "firstName": "angel daniel",
+      "lastName": "Pastrana",
+      "email": "angelpastrana0333@gmail.com",
+      "confirmEmail": "angelpastrana0333@gmail.com",
+      "password": "angel123",
+      "confirmPassword": "angel123",
+      "id": 1
+    },
+    {
+      "firstName": "jose",
+      "lastName": "astorga",
+      "email": "jose123@gmail.com",
+      "confirmEmail": "jose123@gmail.com",
+      "password": "jose123",
+      "confirmPassword": "jose123",
+      "id": 2
+    },
+    {
+      "firstName": "jose",
+      "lastName": "astorga",
+      "email": "jose123@gmail.com",
+      "confirmEmail": "jose123@gmail.com",
+      "password": "jose123",
+      "confirmPassword": "jose123",
+      "id": 3
+    },
+    {
+      "firstName": "Angel Daniel",
+      "lastName": "Pastrana",
+      "email": "angelpastrana0333@gmail.com",
+      "confirmEmail": "angelpastrana0333@gmail.com",
+      "password": "angel123",
+      "confirmPassword": "angel123",
+      "id": 4
+    }
+  ]
+}
