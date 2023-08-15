@@ -5,18 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import Swal from "sweetalert2";
-import {
-  validationFirstName,
-  validationLastName,
-  validationEmail,
-  validationConfirmEmail,
-  validationPhone,
-  validationAddress,
-  validationPostalCode,
-  validationUserName,
-  validationPassword,
-  validationConfirmPassword,
-} from "../../helpers/registerValidations";
+import {validationSchema} from "../../helpers/registerValidations";
 import logo from "../../img/Logo.png";
 import * as Yup from "yup";
 import clsx from "clsx";
@@ -85,7 +74,8 @@ const RegisterEdit = ({registers, URL, getApi,setRegisters}) => {
   return (
 
 
-        <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
+        <Formik initialValues={initialValues} onSubmit={handleFormSubmit} validationSchema={validationSchema}>
+      
           <Form className="container mt-5 bg-white p-4 rounded">
             <div className="d-flex justify-content-center mb-4">
               <img
