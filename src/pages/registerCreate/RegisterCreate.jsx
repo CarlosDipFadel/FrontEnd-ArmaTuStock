@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   validationFirstName,
   validationLastName,
   validationEmail,
   validationConfirmEmail,
+  validationPhone,
+  validationAddress,
+  validationPostalCode,
+  validationUserName,
   validationPassword,
   validationConfirmPassword,
 } from "../../helpers/registerValidations";
@@ -13,24 +18,23 @@ import logo from "../../img/Logo.png";
 import * as Yup from "yup";
 import clsx from "clsx";
 
-const RegistrationForm = ({ URL, getApi }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setconfirmEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
-
+const RegisterCreate = ({ URL, getApi }) => {
   //useNavigate
   // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const initialValues = {
     firstName: "",
     lastName: "",
     email: "",
     confirmEmail: "",
+    phone: "",
+    address: "",
+    postalCode: "",
+    userName: "",
     password: "",
     confirmPassword: "",
+    role: "",
   };
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
@@ -46,7 +50,7 @@ const RegistrationForm = ({ URL, getApi }) => {
       if (res.status === 201) {
         Swal.fire("Created!", "Your file has been created.", "success");
         getApi();
-        // Puedes realizar redirección o acciones adicionales aquí
+        navigate("/registerTable");
       }
     } catch (error) {
       console.log(error);
@@ -55,11 +59,7 @@ const RegistrationForm = ({ URL, getApi }) => {
     }
   };
   return (
-    <Formik
-      initialValues={initialValues}
-      // validationSchema={validationSchema}
-      onSubmit={handleFormSubmit}
-    >
+    <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
       <Form className="container mt-5 bg-white p-4 rounded">
         <div className="d-flex justify-content-center mb-4">
           <img
@@ -123,6 +123,53 @@ const RegistrationForm = ({ URL, getApi }) => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="phone">Teléfono:</label>
+          <Field type="tel" id="phone" name="phone" className="form-control" />
+          <ErrorMessage name="phone" component="div" className="text-danger" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="address">Dirección:</label>
+          <Field
+            type="text"
+            id="address"
+            name="address"
+            className="form-control"
+          />
+          <ErrorMessage
+            name="address"
+            component="div"
+            className="text-danger"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="postalCode">Código Postal:</label>
+          <Field
+            type="text"
+            id="postalCode"
+            name="postalCode"
+            className="form-control"
+          />
+          <ErrorMessage
+            name="postalCode"
+            component="div"
+            className="text-danger"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="userName">Nombre de Usuario:</label>
+          <Field
+            type="text"
+            id="userName"
+            name="userName"
+            className="form-control"
+          />
+          <ErrorMessage
+            name="userName"
+            component="div"
+            className="text-danger"
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="password">Contraseña:</label>
           <Field
             type="password"
@@ -150,6 +197,18 @@ const RegistrationForm = ({ URL, getApi }) => {
             className="text-danger"
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="role">Rol:</label>
+          <Field as="select" id="role" name="role" className="form-control">
+            <option value="" disabled>
+              Seleccionar Rol
+            </option>
+            <option value="admin">Usuario Administrador</option>
+            <option value="sales">Usuario de Ventas</option>
+          </Field>
+          <ErrorMessage name="role" component="div" className="text-danger" />
+        </div>
+
         <button type="submit" className="btn btn-primary mt-2">
           Registrarse
         </button>
@@ -158,4 +217,4 @@ const RegistrationForm = ({ URL, getApi }) => {
   );
 };
 
-export default RegistrationForm;
+export default RegisterCreate;

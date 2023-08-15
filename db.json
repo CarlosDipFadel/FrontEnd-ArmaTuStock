@@ -1,40 +1,46 @@
 {
   "registers": [
     {
-      "firstName": "angel daniel",
+      "firstName": "Angel Daniel",
       "lastName": "Pastrana",
       "email": "angelpastrana0333@gmail.com",
       "confirmEmail": "angelpastrana0333@gmail.com",
+      "phone": "03812060571",
+      "address": "PJE 24 de junio",
+      "postalCode": "T4105",
+      "userName": "angel0333",
       "password": "angel123",
       "confirmPassword": "angel123",
+      "role": "admin",
       "id": 1
     },
     {
       "firstName": "jose",
       "lastName": "astorga",
-      "email": "jose123@gmail.com",
-      "confirmEmail": "jose123@gmail.com",
-      "password": "jose123",
-      "confirmPassword": "jose123",
+      "email": "joseAstorga0222@gmail.com",
+      "confirmEmail": "joseAstorga0222@gmail.com",
+      "phone": "4564987445",
+      "address": "calle 89",
+      "postalCode": "5896",
+      "userName": "jose7895",
+      "password": "jose1234",
+      "confirmPassword": "jose1234",
+      "role": "sales",
       "id": 2
     },
     {
-      "firstName": "jose",
-      "lastName": "astorga",
-      "email": "jose123@gmail.com",
-      "confirmEmail": "jose123@gmail.com",
-      "password": "jose123",
-      "confirmPassword": "jose123",
+      "firstName": "julian",
+      "lastName": "trejo",
+      "email": "juliantrejo0555@gmail.com",
+      "confirmEmail": "juliantrejo0555@gmail.com",
+      "phone": "45896655",
+      "address": "calle90",
+      "postalCode": "4589",
+      "userName": "julian456",
+      "password": "julian1234",
+      "confirmPassword": "julian1234",
+      "role": "sales",
       "id": 3
-    },
-    {
-      "firstName": "Angel Daniel",
-      "lastName": "Pastrana",
-      "email": "angelpastrana0333@gmail.com",
-      "confirmEmail": "angelpastrana0333@gmail.com",
-      "password": "angel123",
-      "confirmPassword": "angel123",
-      "id": 4
     }
   ]
 }
