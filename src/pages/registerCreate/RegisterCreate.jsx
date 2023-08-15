@@ -1,56 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import {validationSchema} from "../../helpers/registerValidations";
+import { validationSchema } from "../../helpers/registerValidations";
 import logo from "../../img/Logo.png";
 import * as Yup from "yup";
 import clsx from "clsx";
+import axios from "axios";
 
-const RegisterCreate = ({ URL, getApi }) => {
-  //useNavigate
-  // const navigate = useNavigate();
-  const navigate = useNavigate();
+const RegisterCreate = ({}) => {
 
   const initialValues = {
-    firstName: "",
-    lastName: "",
+    nombre: "",
+    apellido: "",
     email: "",
-    confirmEmail: "",
-    phone: "",
-    address: "",
-    postalCode: "",
+    confirmEmail:"",
+    telefono: "",
+    direccion: "",
+    codigoPostal: "",
     userName: "",
     password: "",
     confirmPassword: "",
-    role: "",
   };
 
-  const handleFormSubmit = async (values, { setSubmitting }) => {
+  const handleFormSubmit = async (values) => {
+    values.preventDefault()
+    console.log(values);
     try {
-      const res = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (res.status === 201) {
-        Swal.fire("Created!", "Your file has been created.", "success");
-        getApi();
-        navigate("/registerTable");
-      }
+     
+      await axios.post(`${import.meta.env.VITE_URL}/api/users/register`, {
+        nombre: values.target[0].value,
+        apellido: values.target[1].value,
+        email: values.target[2].value,
+        confirmEmail: values.target[3].value,
+        telefono: values.target[4].value,
+        direccion: values.target[5].value,
+        codigoPostal: values.target[6].value,
+        userName: values.target[7].value,
+        password: values.target[8].value,
+        confirmPassword: values.target[9].value,
+      }).then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log(error);
+      })
     } catch (error) {
       console.log(error);
-    } finally {
-      setSubmitting(false);
-    }
+    } 
   };
   return (
     <Formik initialValues={initialValues} onSubmit={handleFormSubmit} validationSchema={validationSchema}>
-     
-      <Form className="container mt-5 bg-white p-4 rounded">
+
+      <Form className="container mt-5 bg-white p-4 rounded" onSubmit={handleFormSubmit}>
         <div className="d-flex justify-content-center mb-4">
           <img
             src={logo}
@@ -61,29 +61,29 @@ const RegisterCreate = ({ URL, getApi }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="firstName">Nombre:</label>
+          <label htmlFor="nombre">Nombre:</label>
           <Field
             type="text"
-            id="firstName"
-            name="firstName"
+            id="nombre"
+            name="nombre"
             className="form-control"
           />
           <ErrorMessage
-            name="firstName"
+            name="nombre"
             component="div"
             className="text-danger"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName">Apellido:</label>
+          <label htmlFor="apellido">Apellido:</label>
           <Field
             type="text"
-            id="lastName"
-            name="lastName"
+            id="apellido"
+            name="apellido"
             className="form-control"
           />
           <ErrorMessage
-            name="lastName"
+            name="apellido"
             component="div"
             className="text-danger"
           />
@@ -113,34 +113,34 @@ const RegisterCreate = ({ URL, getApi }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="phone">Teléfono:</label>
-          <Field type="tel" id="phone" name="phone" className="form-control" />
-          <ErrorMessage name="phone" component="div" className="text-danger" />
+          <label htmlFor="telefono">Teléfono:</label>
+          <Field type="telefono" id="telefono" name="phone" className="form-control" />
+          <ErrorMessage name="telefono" component="div" className="text-danger" />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Dirección:</label>
+          <label htmlFor="direccion">Dirección:</label>
           <Field
             type="text"
-            id="address"
-            name="address"
+            id="direccion"
+            name="direccion"
             className="form-control"
           />
           <ErrorMessage
-            name="address"
+            name="direccion"
             component="div"
             className="text-danger"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="postalCode">Código Postal:</label>
+          <label htmlFor="codigoPostal">Código Postal:</label>
           <Field
             type="text"
-            id="postalCode"
-            name="postalCode"
+            id="codigoPostal"
+            name="codigoPostal"
             className="form-control"
           />
           <ErrorMessage
-            name="postalCode"
+            name="codigoPostal"
             component="div"
             className="text-danger"
           />
@@ -187,22 +187,12 @@ const RegisterCreate = ({ URL, getApi }) => {
             className="text-danger"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="role">Rol:</label>
-          <Field as="select" id="role" name="role" className="form-control">
-            <option value="" disabled>
-              Seleccionar Rol
-            </option>
-            <option value="admin">Usuario Administrador</option>
-            <option value="sales">Usuario de Ventas</option>
-          </Field>
-          <ErrorMessage name="role" component="div" className="text-danger" />
-        </div>
+       
 
         <button type="submit" className="btn btn-primary mt-2">
           Registrarse
         </button>
-       
+
       </Form>
 
     </Formik>

@@ -9,25 +9,23 @@ import RegisterEdit from "../pages/registerEdit/registerEdit";
 
 
 const Routes = () => {
-  const [registers,setRegisters] = useState([]);
-  
-  // consumo de Variable de entorno vitejs
+   // consumo de Variable de entorno vitejs
 
-  const URL = import.meta.env.VITE_API_ArmaTuStock;
+ 
 
   
-  const getApi = async () => {
-    try {
-      const res = await fetch(URL);
-      const registerApi = await res.json();
-      setRegisters(registerApi);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getApi = async () => {
+  //   try {
+  //     const res = await fetch(URL);
+  //     const registerApi = await res.json();
+  //     setRegisters(registerApi);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   
   useEffect(() => {
-    getApi();
+    
   }, []);
 
 
@@ -35,9 +33,9 @@ const Routes = () => {
     <Container>
       <Rutas>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<RegisterUser URL={URL} getApi={getApi}/>} />
-        <Route path="/registerTable" element={<RegisterTable registers={registers} URL={URL} getApi={getApi}/>} />
-        <Route path="/registerEdit/:id" element={<RegisterEdit registers={registers} URL={URL} getApi={getApi} setRegisters={setRegisters} />} />
+        <Route path="/register" element={<RegisterUser />} />
+        <Route path="/registerTable" element={<RegisterTable />} />
+        <Route path="/registerEdit" element={<RegisterEdit  />} />
 
 
       </Rutas>

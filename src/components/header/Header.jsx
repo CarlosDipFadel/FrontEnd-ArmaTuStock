@@ -17,6 +17,9 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/registerTable">tabla usuarios</Nav.Link>
                     </Nav>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/registerEdit">Editar usuarios</Nav.Link>
+                    </Nav>
                     <Button variant='primary'>Login</Button>
                 </Navbar.Collapse>
             </Container>

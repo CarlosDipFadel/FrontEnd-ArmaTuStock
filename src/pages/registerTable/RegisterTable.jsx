@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-const RegisterTable = ({ registers, URL, getApi}) => {
+const RegisterTable = ({}) => {
   // Eliminar usuario
   const handleDelete = (id) => {
     Swal.fire({
@@ -48,7 +48,7 @@ const RegisterTable = ({ registers, URL, getApi}) => {
           </tr>
         </thead>
         <tbody>
-          {registers.map((user) => (
+          {register((user) => (
             <tr key={user.id}>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
