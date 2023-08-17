@@ -8,49 +8,68 @@ import clsx from "clsx";
 import axios from "axios";
 
 const RegisterCreate = ({}) => {
+  const [roles, setRoles] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
+      .then((response) => {
+        setRoles(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener roles:", error);
+      });
+  }, []);
 
   const initialValues = {
     nombre: "",
     apellido: "",
     email: "",
-    confirmEmail:"",
+    confirmEmail: "",
     telefono: "",
     direccion: "",
     codigoPostal: "",
     userName: "",
     password: "",
     confirmPassword: "",
+    rol: "",
   };
 
   const handleFormSubmit = async (values) => {
-    values.preventDefault()
+    values.preventDefault();
     console.log(values);
+
     try {
-     
-      await axios.post(`${import.meta.env.VITE_URL}/api/users/register`, {
-        nombre: values.target[0].value,
-        apellido: values.target[1].value,
-        email: values.target[2].value,
-        confirmEmail: values.target[3].value,
-        telefono: values.target[4].value,
-        direccion: values.target[5].value,
-        codigoPostal: values.target[6].value,
-        userName: values.target[7].value,
-        password: values.target[8].value,
-        confirmPassword: values.target[9].value,
-      }).then((response)=>{
-        console.log(response);
-      }).catch((error)=>{
-        console.log(error);
-      })
+      await axios
+        .post(`${import.meta.env.VITE_URL}/api/users/register`, {
+          nombre: values.target[0].value,
+          apellido: values.target[1].value,
+          email: values.target[2].value,
+          confirmEmail: values.target[3].value,
+          telefono: values.target[4].value,
+          direccion: values.target[5].value,
+          codigoPostal: values.target[6].value,
+          userName: values.target[7].value,
+          password: values.target[8].value,
+          confirmPassword: values.target[9].value,
+          rol: values.target[10].value,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
   return (
-    <Formik initialValues={initialValues} onSubmit={handleFormSubmit} validationSchema={validationSchema}>
-
-      <Form className="container mt-5 bg-white p-4 rounded" onSubmit={handleFormSubmit}>
+    <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Form
+        className="container mt-5 bg-white p-4 rounded"
+        onSubmit={handleFormSubmit}
+      >
         <div className="d-flex justify-content-center mb-4">
           <img
             src={logo}
@@ -68,11 +87,7 @@ const RegisterCreate = ({}) => {
             name="nombre"
             className="form-control"
           />
-          <ErrorMessage
-            name="nombre"
-            component="div"
-            className="text-danger"
-          />
+          <ErrorMessage name="nombre" component="div" className="text-danger" />
         </div>
         <div className="form-group">
           <label htmlFor="apellido">Apellido:</label>
@@ -114,8 +129,17 @@ const RegisterCreate = ({}) => {
         </div>
         <div className="form-group">
           <label htmlFor="telefono">Teléfono:</label>
-          <Field type="telefono" id="telefono" name="phone" className="form-control" />
-          <ErrorMessage name="telefono" component="div" className="text-danger" />
+          <Field
+            type="telefono"
+            id="telefono"
+            name="phone"
+            className="form-control"
+          />
+          <ErrorMessage
+            name="telefono"
+            component="div"
+            className="text-danger"
+          />
         </div>
         <div className="form-group">
           <label htmlFor="direccion">Dirección:</label>
@@ -187,14 +211,24 @@ const RegisterCreate = ({}) => {
             className="text-danger"
           />
         </div>
-       
+
+        <div className="form-group">
+          <label htmlFor="rol">Rol:</label>
+          <Field as="select" id="rol" name="rol" className="form-control">
+            <option value="">Selecciona un rol</option>
+            {roles.map((rol, index) => (
+              <option key={index} value={rol.role}>
+                {rol.role}
+              </option>
+            ))}
+          </Field>
+          <ErrorMessage name="rol" component="div" className="text-danger" />
+        </div>
 
         <button type="submit" className="btn btn-primary mt-2">
           Registrarse
         </button>
-
       </Form>
-
     </Formik>
   );
 };
