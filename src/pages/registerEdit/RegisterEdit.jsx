@@ -16,21 +16,21 @@ const RegisterEdit = ({}) => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  
 
+  const [roles, setRoles] = useState([]);
+  const [roleSelected, setRoleSelected]= useState()
 
-  // const initialValues = {
-  //   nombre: registers.nombre || "",
-  //   apellido: registers.apellido || "",
-  //   email: registers.email || "",
-  //   confirmEmail: registers.confirmEmail || "",
-  //   telefono: registers.telefono || "", // Agregar este campo con valor de registers.phone
-  //   direccion: registers.direccion || "",
-  //   codigoPostal: registers.codigoPostal || "",
-  //   userName: registers.userName || "",
-  //   password: "", // No se asigna directamente desde registers por razones de seguridad
-  //   confirmPassword: "", // No se asigna directamente desde registers por razones de seguridad
-  // };
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
+      .then((response) => {
+        setRoles(response.data);
+        setRoleSelected(response.data[0].role)
+      })
+      .catch((error) => {
+        console.error("Error al obtener roles:", error);
+      });
+  }, []);
 
   const initialValues = {
     nombre: "",
@@ -43,11 +43,13 @@ const RegisterEdit = ({}) => {
     userName: "",
     password: "",
     confirmPassword: "",
+    rol: "",
   };
   const handleFormSubmit = async (values) => {
     values.preventDefault()
     try {
-    await axios.put(`${import.meta.env.VITE_URL}/api/users/register`, {
+    await axios.put(`${import.meta.env.VITE_URL}/api/users/register`, //la direccion debe cambiar segun la api por lo tantocon esta direccion se estaria como creando un nuevo usuario y no editando
+    {
       nombre: values.target[0].value,
       apellido: values.target[1].value,
       email: values.target[2].value,
@@ -58,6 +60,7 @@ const RegisterEdit = ({}) => {
       userName: values.target[7].value,
       password: values.target[8].value,
       confirmPassword: values.target[9].value,
+      roles: [roleSelected],
     }).then((response)=>{
       console.log(response);
     }).catch((error)=>{
@@ -71,9 +74,11 @@ const RegisterEdit = ({}) => {
   return (
 
 
-    <Formik initialValues={initialValues} onSubmit={handleFormSubmit} validationSchema={validationSchema}>
-
-    <Form className="container mt-5 bg-white p-4 rounded" onSubmit={handleFormSubmit}>
+    <Formik initialValues={initialValues} validationSchema={validationSchema}>
+    <Form
+      className="container mt-5 bg-white p-4 rounded"
+      onSubmit={handleFormSubmit}
+    >
       <div className="d-flex justify-content-center mb-4">
         <img
           src={logo}
@@ -91,11 +96,7 @@ const RegisterEdit = ({}) => {
           name="nombre"
           className="form-control"
         />
-        <ErrorMessage
-          name="nombre"
-          component="div"
-          className="text-danger"
-        />
+        <ErrorMessage name="nombre" component="div" className="text-danger" />
       </div>
       <div className="form-group">
         <label htmlFor="apellido">Apellido:</label>
@@ -137,8 +138,17 @@ const RegisterEdit = ({}) => {
       </div>
       <div className="form-group">
         <label htmlFor="telefono">Teléfono:</label>
-        <Field type="telefono" id="telefono" name="phone" className="form-control" />
-        <ErrorMessage name="telefono" component="div" className="text-danger" />
+        <Field
+          type="telefono"
+          id="telefono"
+          name="phone"
+          className="form-control"
+        />
+        <ErrorMessage
+          name="telefono"
+          component="div"
+          className="text-danger"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="direccion">Dirección:</label>
@@ -210,14 +220,22 @@ const RegisterEdit = ({}) => {
           className="text-danger"
         />
       </div>
-     
+
+      <div className="form-group">
+        <label htmlFor="rol">Rol:</label>
+
+        <FormBoostrap.Select aria-label="Default select example" onChange={(value)=>{setRoleSelected(value.target.value)}}>
+            {roles.map((rol)=>{
+              return (<option value={rol.role}>{rol.role}</option>)
+            })}
+        </FormBoostrap.Select>
+        <ErrorMessage name="rol" component="div" className="text-danger" />
+      </div>
 
       <button type="submit" className="btn btn-primary mt-2">
         Registrarse
       </button>
-
     </Form>
-
   </Formik>
 
   );

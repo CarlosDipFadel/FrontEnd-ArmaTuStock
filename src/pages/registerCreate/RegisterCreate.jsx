@@ -6,15 +6,18 @@ import logo from "../../img/Logo.png";
 import * as Yup from "yup";
 import clsx from "clsx";
 import axios from "axios";
+import { Form as FormBoostrap } from "react-bootstrap";
 
-const RegisterCreate = ({}) => {
+const RegisterCreate = ({ }) => {
   const [roles, setRoles] = useState([]);
+  const [roleSelected, setRoleSelected] = useState()
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
       .then((response) => {
         setRoles(response.data);
+        setRoleSelected(response.data[0].role)
       })
       .catch((error) => {
         console.error("Error al obtener roles:", error);
@@ -40,26 +43,56 @@ const RegisterCreate = ({}) => {
     console.log(values);
 
     try {
-      await axios
-        .post(`${import.meta.env.VITE_URL}/api/users/register`, {
-          nombre: values.target[0].value,
-          apellido: values.target[1].value,
-          email: values.target[2].value,
-          confirmEmail: values.target[3].value,
-          telefono: values.target[4].value,
-          direccion: values.target[5].value,
-          codigoPostal: values.target[6].value,
-          userName: values.target[7].value,
-          password: values.target[8].value,
-          confirmPassword: values.target[9].value,
-          rol: values.target[10].value,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      Swal.fire({
+        title: 'Crear usuario',
+        text: "Esta seguro que desea crear un nuevo usuario",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'OK!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+
+          try {
+            const response = await axios
+              .post(`${import.meta.env.VITE_URL}/api/users/register`, {
+                nombre: values.target[0].value,
+                apellido: values.target[1].value,
+                email: values.target[2].value,
+                confirmEmail: values.target[3].value,
+                telefono: values.target[4].value,
+                direccion: values.target[5].value,
+                codigoPostal: values.target[6].value,
+                userName: values.target[7].value,
+                password: values.target[8].value,
+                confirmPassword: values.target[9].value,
+                roles: [roleSelected],
+              });
+
+            if (response.status === 201) {
+              Swal.fire(
+                '¡Usuario Registrado!',
+                'El usuario ha sido registrado exitosamente.',
+                'success',
+              )
+            } else {
+              Swal.fire(
+                'Error',
+                'Hubo un error al registrar el usuario en la base de datos.',
+                'error'
+              );
+            }
+          } catch (error) {
+            console.error('Error al registrar el usuario:', error);
+            // SweetAlert2 para mostrar un mensaje de error
+            Swal.fire(
+              'Error',
+              'Hubo un error al registrar el usuario.',
+              'error'
+            );
+          }
+        }
+      })
     } catch (error) {
       console.log(error);
     }
@@ -70,12 +103,15 @@ const RegisterCreate = ({}) => {
         className="container mt-5 bg-white p-4 rounded"
         onSubmit={handleFormSubmit}
       >
+        <div className="welcome-message text-center mb-4">
+          <h3>Bienvenido a nuestro formulario de registro</h3>
+        </div>
         <div className="d-flex justify-content-center mb-4">
           <img
             src={logo}
             alt="Logo"
             className="img-fluid rounded-circle mt-4"
-            style={{ maxWidth: "150px", width: "100%", margin: "0 auto" }}
+            style={{ maxWidth: "300px", width: "100%", margin: "0 auto" }}
           />
         </div>
 
@@ -214,14 +250,12 @@ const RegisterCreate = ({}) => {
 
         <div className="form-group">
           <label htmlFor="rol">Rol:</label>
-          <Field as="select" id="rol" name="rol" className="form-control">
-            <option value="">Selecciona un rol</option>
-            {roles.map((rol, index) => (
-              <option key={index} value={rol.role}>
-                {rol.role}
-              </option>
-            ))}
-          </Field>
+
+          <FormBoostrap.Select aria-label="Default select example" onChange={(value) => { setRoleSelected(value.target.value) }}>
+            {roles.map((rol) => {
+              return (<option value={rol.role}>{rol.role}</option>)
+            })}
+          </FormBoostrap.Select>
           <ErrorMessage name="rol" component="div" className="text-danger" />
         </div>
 
