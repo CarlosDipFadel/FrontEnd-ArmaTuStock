@@ -49,8 +49,7 @@ const FooterLayout = () => {
                 #ArmaTuStock
               </h6>
               <p>
-                Somos un grupo de apasionados por el desarrollo de software y la
-                creación de soluciones tecnológicas innovadoras para resolver
+                Creamos soluciones tecnológicas innovadoras para resolver
                 los desafíos del mundo actual.
               </p>
             </MDBCol>
@@ -110,15 +109,13 @@ const FooterLayout = () => {
                 Gral. Paz 576, T4000 SM de Tucumán, Tucuman
               </p>
               <p>
-                <MDBIcon icon="envelope" className="me-3" />
+                <MDBIcon icon="envelope" className="me-2" />
                 info@armatustock.com
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" /> + 54 381 567 88
+                <MDBIcon icon="phone" className="me-2" /> + 54 381 567 8800
               </p>
-              <p>
-                <MDBIcon icon="print" className="me-3" /> + 54 381 567 89
-              </p>
+              
             </MDBCol>
           </MDBRow>
         </MDBContainer>
