@@ -15,7 +15,7 @@ function GroupExample() {
 
   const cardsData = [
     {
-      src: "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1692462342~exp=1692462942~hmac=82ad130643b787d1f2ca1509361c706f075c7c4c8a96a7d764c6671c3e127aa0",
+      src : "https://img.freepik.com/premium-vector/cartoon-young-man-icon_24908-23721.jpg?w=740",
       title: "Agustin Sanchez",
     },
     {
@@ -31,11 +31,11 @@ function GroupExample() {
       title: "Lucas Ranalleta",
     },
     {
-      src: "holder.js/100px160", 
+      src: "https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740", 
       title: "Juan Pablo Rodriguez",
     },
     {
-      src: "holder.js/100px160", 
+      src: "https://img.freepik.com/premium-vector/cartoon-young-man-icon_24908-23707.jpg?w=740", 
       title: "Mario Copa",
     },
   ];
@@ -81,7 +81,7 @@ function GroupExample() {
                 hoveredIndex === index ? "#" : "transparent", // Color de fondo de cards
               boxShadow:
                 hoveredIndex === index
-                  ? "0 4px 8px rgba(0, 0, 0, 0.1)"
+                  ? "0 4px 8px rgba(0, 0, 0, 0)"
                   : "none",
             }}
           >

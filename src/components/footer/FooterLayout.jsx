@@ -1,4 +1,5 @@
 import React from "react";
+<FontAwesomeIcon icon="fa-brands fa-facebook" />
 
 import {
   MDBFooter,
