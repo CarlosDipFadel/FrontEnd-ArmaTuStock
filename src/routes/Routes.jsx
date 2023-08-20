@@ -1,15 +1,26 @@
-import { Route, Routes as Rutas } from "react-router-dom";
-import Home from "../pages/home/Home";
+
+import React from 'react';
+import { Route, Routes as Rutas} from "react-router-dom";
+import ShowProducts from '../pages/ShowProducts';
+import Home from '../pages/Home'
+import CreateProduct from '../pages/CreateProduct'
 import { Container } from "react-bootstrap";
 
+
+
+
 const Routes = () => {
-  return (
-    <Container>
-      <Rutas>
-        <Route path="/" element={<Home />} />
-      </Rutas>
-    </Container>
-  );
-};
+    return (
+        <>
+         <Container>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/create' element={<CreateProduct />} />
+                <Route path='/show' element={<ShowProducts />} />
+            </Routes>
+        </Container>
+    </>
+);
+}
 
 export default Routes;

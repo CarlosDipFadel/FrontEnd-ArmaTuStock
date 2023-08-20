@@ -1,11 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from "react-bootstrap";
 import UserContext from "./context/UserContext";
 import Routes from "./routes/Routes";
-import Header from "./components/header/Header";
-import FooterLayout from "./components/footer/FooterLayout";
+import Navbar from "./components/Header/Navbar";
+import FooterLayout from "./components/Footer/FooterLayouts";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,7 +12,7 @@ function App() {
   return (
     <>
       <UserContext>
-        <div className="header"><Header /></div>
+        <div className="Navbar"><Navbar /></div>
         <div className="body"><Routes /></div>
         <div className="footer"><FooterLayout /></div>
       </UserContext>

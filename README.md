@@ -1,8 +1,9 @@
-# React + Vite
+#ArmaTuStock
+Este proyecto orientado al control de productos, en este caso 
+utilizamos una ferreteria.
+Nuestra motivacion:
+Poder brindar soluciones a pymes, y a cualquier usuario que necesite mejorar la productividad de su negocio.
+Nuestra web permite automatizar, facilitar y economizar controles diarios de stock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Usando la ultima tecnologia en programacion destacamos en actualizacion...
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
