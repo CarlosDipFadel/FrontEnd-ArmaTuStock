@@ -19,15 +19,15 @@ function GroupExample() {
       title: "Agustin Sanchez",
     },
     {
-      src: "https://img.freepik.com/free-vector/hand-drawn-people-with-dreadlocks-illustration_23-2149752847.jpg?w=740&t=st=1692462162~exp=1692462762~hmac=3dc13496af8cf47b319a960bc61db0eda902f7d3a309ab8ef8c0a6b0d31d0a7a", 
+      src: "https://img.freepik.com/free-vector/hand-drawn-people-with-dreadlocks-illustration_23-2149752841.jpg?w=740&t=st=1692746761~exp=1692747361~hmac=f9823cbbb6c170adfd707b86fb79497d6ef28c666f2a291f4274d9b4eee6aa61", 
       title: "Carlos Dip Fadel",
     },
     {
-      src: "https://img.freepik.com/free-vector/handsome-man_1308-85984.jpg?w=740&t=st=1692463279~exp=1692463879~hmac=6414b17549de184c0c30c6334fa06e65f719a5bce99f098aaf64c568a90ebeb6", 
+      src: "https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18516.jpg", 
       title: "Angel Pastrana",
     },
     {
-      src: "https://img.freepik.com/premium-photo/close-up-person-wearing-headphones-jacket-generative-ai_958098-25134.jpg?w=740", 
+      src: "https://img.freepik.com/premium-vector/cartoon-young-man-icon_24908-23705.jpg", 
       title: "Lucas Ranalleta",
     },
     {

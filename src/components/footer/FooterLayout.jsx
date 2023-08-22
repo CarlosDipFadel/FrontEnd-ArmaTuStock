@@ -1,5 +1,5 @@
 import React from "react";
-<FontAwesomeIcon icon="fa-brands fa-facebook" />
+
 
 import {
   MDBFooter,
@@ -18,7 +18,7 @@ const FooterLayout = () => {
         <div className="me-5 d-none d-lg-block">
           <span>Conéctate con nosotras en las redes sociales:</span>
         </div>
-
+        
         <div>
           <a href="" className="me-4 text-reset">
             <MDBIcon fab icon="facebook-f" />
