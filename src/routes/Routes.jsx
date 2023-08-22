@@ -9,20 +9,6 @@ import RegisterEdit from "../pages/registerEdit/registerEdit";
 
 
 const Routes = () => {
-   // consumo de Variable de entorno vitejs
-
- 
-
-  
-  // const getApi = async () => {
-  //   try {
-  //     const res = await fetch(URL);
-  //     const registerApi = await res.json();
-  //     setRegisters(registerApi);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   
   useEffect(() => {
     
@@ -36,8 +22,6 @@ const Routes = () => {
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/registerTable" element={<RegisterTable />} />
         <Route path="/registerEdit" element={<RegisterEdit  />} />
-
-
       </Rutas>
     </Container>
   );

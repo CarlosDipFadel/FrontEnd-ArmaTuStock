@@ -1,6 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
+import axios from '../../axios';
 
 const Home = () => {
+    
     return (
         <div>
             <h1>Vista Principal</h1>
