@@ -31,7 +31,6 @@ export const validationSchema = Yup.object().shape({
     .required("Campo requerido"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden")
-    .required("Campo requerido"),
-  roles: Yup.string().required("El campo Rol es requerido"),
+    .required("Campo requerido")
 
 });

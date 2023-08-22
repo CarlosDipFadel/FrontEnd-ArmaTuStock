@@ -4,6 +4,7 @@
 .body{
   background-color: #ECE5C7;
   padding: 10px 0 10px 0;
+  overflow: scroll;
 }
 .footer{
   background-color: #116A7B;

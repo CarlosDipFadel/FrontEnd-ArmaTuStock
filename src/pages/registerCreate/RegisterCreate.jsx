@@ -34,12 +34,11 @@ const RegisterCreate = ({}) => {
     codigoPostal: "",
     userName: "",
     password: "",
-    confirmPassword: "",
-    rol: "",
+    confirmPassword: ""
   };
 
   const handleFormSubmit = async (values) => {
-    values.preventDefault();
+
     console.log(values);
 
     try {
@@ -56,16 +55,14 @@ const RegisterCreate = ({}) => {
             const response = await axios.post(
               `${import.meta.env.VITE_URL}/api/users/register`,
               {
-                nombre: values.target[0].value,
-                apellido: values.target[1].value,
-                email: values.target[2].value,
-                confirmEmail: values.target[3].value,
-                telefono: values.target[4].value,
-                direccion: values.target[5].value,
-                codigoPostal: values.target[6].value,
-                userName: values.target[7].value,
-                password: values.target[8].value,
-                confirmPassword: values.target[9].value,
+                nombre: values.nombre,
+                apellido: values.apellido,
+                email: values.email,
+                telefono: values.telefono,
+                direccion: values.direccion,
+                codigoPostal: values.codigoPostal,
+                userName: values.userName,
+                password: values.password,
                 roles: [roleSelected],
               }
             );
@@ -100,11 +97,10 @@ const RegisterCreate = ({}) => {
   };
   
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema}>
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleFormSubmit}>
       <Form
         className="container mt-5  p-4 rounded shadow text-white"
         style={{ backgroundColor: '#01939c' }}
-        onSubmit={handleFormSubmit}
       >
         <div className="welcome-message text-center mb-4">
           <h3>Formulario de registro</h3>
@@ -176,7 +172,7 @@ const RegisterCreate = ({}) => {
           <Field
             type="telefono"
             id="telefono"
-            name="phone"
+            name="telefono"
             className="form-control"
           />
           <ErrorMessage
@@ -269,7 +265,6 @@ const RegisterCreate = ({}) => {
               return <option  key={rol.role} value={rol.role}>{rol.role}</option>;
             })}
           </FormBoostrap.Select>
-          <ErrorMessage name="rol" component="div" className="text-danger" />
         </div>
         <div className="form-group text-center">
           <button type="submit" className="btn btn-dark mt-2 btn-lg"style={{ width: "70%" }}>

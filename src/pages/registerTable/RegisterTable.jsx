@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
 import { Table, Button, ButtonGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UsuariosContext } from "../../context/UserContext";
-import RegisterEdit from "../registerEdit/RegisterEdit";
 
 const RegisterTable = () => {
   const [formularios, setFormularios] = useState([]);
   const {getUsuarios} = useContext(UsuariosContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getUsuarios().then((response)=>{
@@ -23,7 +23,7 @@ const RegisterTable = () => {
   }, []);
 
   const RedirectViewUpdate = (user) => {
-    return <RegisterEdit user={user}/>
+    navigate('/registerEdit', {state: user})
   }
   // Eliminar usuario
   // const handleDelete = (id) => {

@@ -30,8 +30,17 @@ const UserContext = ({ children }) => {
         }
     }
 
+    const getRoles = async () =>{
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
+            return response.data;
+        } catch (error) {
+            return error;
+        }
+    }
+
     return (
-        <UsuariosContext.Provider value={{ usuarios, setUsuarios, loginUser, getUsuarios }}>
+        <UsuariosContext.Provider value={{ usuarios, setUsuarios, loginUser, getUsuarios, getRoles }}>
             {children}
         </UsuariosContext.Provider>
     )

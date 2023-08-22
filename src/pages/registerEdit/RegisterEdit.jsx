@@ -1,53 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Form as FormBoostrap } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
-
 import Swal from "sweetalert2";
 import { validationSchema } from "../../helpers/registerValidations";
 import logo from "../../img/Logo.png";
 import * as Yup from "yup";
 import clsx from "clsx";
+import {UsuariosContext} from "../../context/UserContext"
 
-const RegisterEdit = ({user}) => {
-
-  //navigate
-  
-
-  const { id } = useParams();
-
+const RegisterEdit = () => {
+  const location = useLocation()
   const [roles, setRoles] = useState([]);
   const [roleSelected, setRoleSelected] = useState()
+  const [user, setUser] = useState(location.state);
+
+  const {getRoles} = useContext(UsuariosContext)
 
   useEffect(() => {
-    console.log(user);
-    axios.get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
+    setRoleSelected(user.roles[0].role)
+
+    getRoles().then((response)=>{
+      setRoles(response)
+    }).catch((error)=>{
+      console.log(error);
+    })
+    /* axios.get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
       .then((response) => {
         setRoles(response.data);
-        setRoleSelected(response.data[0].role)
+        
       })
       .catch((error) => {
         console.error("Error al obtener roles:", error);
-      });
+      }); */
   }, []);
 
   const initialValues = {
-    nombre: "",
-    apellido: "",
-    email: "",
-    confirmEmail: "",
-    telefono: "",
-    direccion: "",
-    codigoPostal: "",
-    userName: "",
+    nombre: user.nombre,
+    apellido: user.apellido,
+    email: user.email,
+    confirmEmail: user.email,
+    telefono: user.telefono,
+    direccion: user.direccion,
+    codigoPostal: user.codigoPostal,
+    userName: user.userName,
     password: "",
     confirmPassword: "",
-    rol: "",
+    rol: user.roles[0].role,
   };
   const handleFormSubmit = async (values) => {
     values.preventDefault()
-    try {
+
+
+    /* try {
       await axios.put(`${import.meta.env.VITE_URL}/api/users/register`, //la direccion debe cambiar segun la api por lo tantocon esta direccion se estaria como creando un nuevo usuario y no editando
         {
           nombre: values.target[0].value,
@@ -68,8 +74,7 @@ const RegisterEdit = ({user}) => {
         })
     } catch (error) {
       console.log(error);
-    }
-
+    } */
   };
   return (
 
@@ -139,9 +144,8 @@ const RegisterEdit = ({user}) => {
         <div className="form-group">
           <label htmlFor="telefono">Teléfono:</label>
           <Field
-            type="telefono"
             id="telefono"
-            name="phone"
+            name="telefono"
             className="form-control"
           />
           <ErrorMessage
@@ -225,8 +229,9 @@ const RegisterEdit = ({user}) => {
           <label htmlFor="rol">Rol:</label>
 
           <FormBoostrap.Select aria-label="Default select example" onChange={(value) => { setRoleSelected(value.target.value) }}>
-            {roles.map((rol) => {
-              return (<option value={rol.role}>{rol.role}</option>)
+            <option>{roleSelected}</option>
+            {roles.map((rol, index) => {
+              return (<option key={index} value={rol.role}>{rol.role}</option>)
             })}
           </FormBoostrap.Select>
           <ErrorMessage name="rol" component="div" className="text-danger" />
