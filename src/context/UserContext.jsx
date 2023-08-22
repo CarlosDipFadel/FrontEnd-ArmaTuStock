@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
+import axios from 'axios'
 
 export const UsuariosContext = createContext()  
 
@@ -12,14 +13,25 @@ const UserContext = ({ children }) => {
                 password: password
             })
             localStorage.setItem("user", JSON.stringify(response.data));
+            console.log(response);
             return {success: true};
         } catch (error) {
+            console.log(error);
             return {success: false, message: error.response.data};
         }
     }
 
+    const getUsuarios = async () => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_URL}/api/users/getUsers`)
+            return response.data
+        } catch (error) {
+            return error.response.data;
+        }
+    }
+
     return (
-        <UsuariosContext.Provider value={{ usuarios, setUsuarios, loginUser }}>
+        <UsuariosContext.Provider value={{ usuarios, setUsuarios, loginUser, getUsuarios }}>
             {children}
         </UsuariosContext.Provider>
     )

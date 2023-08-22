@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { UsuariosContext } from "../../context/UserContext";
+import RegisterEdit from "../registerEdit/RegisterEdit";
 
 const RegisterTable = () => {
   const [formularios, setFormularios] = useState([]);
+  const {getUsuarios} = useContext(UsuariosContext)
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_URL}/api/users/getUser`) // Ajusta la URL según tu API
-      .then((response) => {
-        setFormularios(response.data);
+    getUsuarios().then((response)=>{
+      setFormularios(response);
+    }).catch((error)=>{
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error.error
       })
-      .catch((error) => {
-        console.error("Error al obtener la lista de formularios:", error);
-      });
+    })
   }, []);
+
+  const RedirectViewUpdate = (user) => {
+    return <RegisterEdit user={user}/>
+  }
   // Eliminar usuario
   // const handleDelete = (id) => {
   //   Swal.fire({
@@ -63,7 +71,7 @@ const RegisterTable = () => {
         </thead>
         <tbody>
           {formularios.map((formulario) => (
-            <tr key={formulario.id}>
+            <tr key={formulario._id}>
               <td>{formulario.nombre}</td>
               <td>{formulario.apellido}</td>
               <td>{formulario.email}</td>
@@ -72,25 +80,21 @@ const RegisterTable = () => {
               <td>{formulario.codigoPostal}</td>
               <td>{formulario.userName}</td>
               <td>
-                {formulario.roles.map((rol) => (
-                  <span key={rol._id}>{rol.role}</span>
+                {formulario.roles.map((rol, index) => (
+                  <span key={index}>{rol.role}</span>
                 ))}
               </td>
               <td>
-                <div className="btn-group btn-group-sm">
-                  <Link
+                {/* <Link
                     to={`/registerEdit/${formulario.id}`}
                     className="btn-orange mx-1 text-decoration-none text-center"
                   >
                     Update
-                  </Link>
-                  <button
-                    className="btn btn-sm btn-danger ml-2"
-                    // onClick={() => handleDelete(user.id)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
+                  </Link> */}
+                <ButtonGroup vertical>
+                  <Button onClick={()=>{RedirectViewUpdate(formulario)}}>Modificar</Button>
+                  <Button variant="danger">Eliminar</Button>
+                </ButtonGroup>
               </td>
             </tr>
           ))}
