@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const validationSchema = Yup.object({
+export const validationSchema = Yup.object().shape({
   nombre: Yup.string()
     .required("Campo requerido")
     .max(30, "Debe tener 30 caracteres o menos"),
@@ -32,4 +32,6 @@ export const validationSchema = Yup.object({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden")
     .required("Campo requerido"),
+  roles: Yup.string().required("El campo Rol es requerido"),
+
 });
