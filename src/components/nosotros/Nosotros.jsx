@@ -23,16 +23,12 @@ function GroupExample() {
       title: "Carlos Dip Fadel",
     },
     {
-      src: "https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18516.jpg", 
+      src: "https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740", 
       title: "Angel Pastrana",
     },
     {
       src: "https://img.freepik.com/premium-vector/cartoon-young-man-icon_24908-23705.jpg", 
       title: "Lucas Ranalleta",
-    },
-    {
-      src: "https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740", 
-      title: "Juan Pablo Rodriguez",
     },
     {
       src: "https://img.freepik.com/premium-vector/cartoon-young-man-icon_24908-23707.jpg?w=740", 
