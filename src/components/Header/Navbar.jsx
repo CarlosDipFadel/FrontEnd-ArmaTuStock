@@ -1,26 +1,30 @@
 import React from 'react';
-import {Container, Nav, Navbar, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import NavbarBs from 'react-bootstrap/Navbar';
+import './navbar.css'
 
-const Header = () => {
+
+const Navbar = () => {
     return (
-        <Navbar expand="lg"> 
-            <Container>
-                <Navbar.Brand href="#home">Arma tu stock</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="/">Principal</Nav.Link>
-                    </Nav>
-                    <Button variant='primary'>Login</Button>
-                </Navbar.Collapse>
+        <NavbarBs bg="dark" variant="dark">
+            <Container fluid>
+                <NavbarBs.Brand href="#home">Tienda</NavbarBs.Brand>
+                <Nav className="nav-container justify-content-evenly">
+                    <Nav.Item>
+                        <Link to='/' style={{color:'#fff', textDecoration: 'none'}}> Home </Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Link to='/create' style={{color:'#fff', textDecoration: 'none'}}> Crear </Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Link to='/show' style={{color:'#fff', textDecoration: 'none'}}> Listar </Link>
+                    </Nav.Item>
+                </Nav>
             </Container>
-        </Navbar>
+        </NavbarBs>
     );
-    /* return (
-        <div className='header'>
-            <h1>hola mundo</h1>
-        </div>
-    ); */
-};
+}
 
-export default Header;
+export default Navbar;
