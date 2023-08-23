@@ -3,8 +3,8 @@ import { Route, Routes as Rutas} from "react-router-dom";
 import Home from "../pages/home/Home";
 import { Container } from "react-bootstrap";
 import RegisterUser from "../pages/registerCreate/RegisterCreate";
-import RegisterTable from "../pages/registerTable/registerTable";
-import RegisterEdit from "../pages/registerEdit/registerEdit";
+import RegisterTable from "../pages/registerTable/RegisterTable";
+import RegisterEdit from "../pages/registerEdit/RegisterEdit";
 
 
 

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { Table, Button, ButtonGroup } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { UsuariosContext } from "../../context/UserContext";
+import axios from "axios";
 
 const RegisterTable = () => {
   const [formularios, setFormularios] = useState([]);
@@ -25,33 +26,42 @@ const RegisterTable = () => {
   const RedirectViewUpdate = (user) => {
     navigate('/registerEdit', {state: user})
   }
-  // Eliminar usuario
-  // const handleDelete = (id) => {
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonText: "Delete",
-  //   }).then(async (result) => {
-  //     if (result.isConfirmed) {
-  //       try {
-  //         const res = await fetch(`${URL}/${id}`, {
-  //           method: "DELETE",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         });
-  //         if (res.status === 200) {
-  //           Swal.fire("Deleted!", "Your file has been deleted.", "success");
-  //           getApi();
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   });
-  // };
+  
+  const handleDelete = (user) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.delete(
+            `${import.meta.env.VITE_URL}/api/users/delete`,
+            {
+              data: { id: user._id }, // Send the user ID in the request body
+            }
+          );
+  
+          if (response.status === 200) {
+            Swal.fire("¡Eliminado!", "El usuario ha sido eliminado.", "success");
+            setFormularios((prevFormularios) =>
+              prevFormularios.filter((formulario) => formulario._id !== user._id)
+            );
+          }
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un error al eliminar el usuario.",
+          });
+        }
+      }
+    });
+  };
+  
 
   return (
     <div className="table-responsive">
@@ -93,7 +103,7 @@ const RegisterTable = () => {
                   </Link> */}
                 <ButtonGroup vertical>
                   <Button onClick={()=>{RedirectViewUpdate(formulario)}}>Modificar</Button>
-                  <Button variant="danger">Eliminar</Button>
+                  <Button variant="danger" onClick={() => handleDelete(formulario)}>Eliminar</Button>
                 </ButtonGroup>
               </td>
             </tr>

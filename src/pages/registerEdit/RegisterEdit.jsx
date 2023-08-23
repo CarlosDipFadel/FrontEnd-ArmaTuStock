@@ -11,16 +11,17 @@ import clsx from "clsx";
 import {UsuariosContext} from "../../context/UserContext"
 
 const RegisterEdit = () => {
-  const location = useLocation()
+  const location = useLocation();
+  console.log(location.state);
   const [roles, setRoles] = useState([]);
   const [roleSelected, setRoleSelected] = useState()
-  const [user, setUser] = useState(location.state);
+  const [user, setUser] = useState(location.state || {});
 
   const {getRoles} = useContext(UsuariosContext)
-
   useEffect(() => {
-    setRoleSelected(user.roles[0].role)
-
+    if (user.roles && user.roles.length > 0) {
+      setRoleSelected(user.roles[0].role);
+    }
     getRoles().then((response)=>{
       setRoles(response)
     }).catch((error)=>{
@@ -37,85 +38,124 @@ const RegisterEdit = () => {
   }, []);
 
   const initialValues = {
-    nombre: user.nombre,
-    apellido: user.apellido,
-    email: user.email,
-    confirmEmail: user.email,
-    telefono: user.telefono,
-    direccion: user.direccion,
-    codigoPostal: user.codigoPostal,
-    userName: user.userName,
+    nombre: user.nombre || '',
+    apellido: user.apellido || '',
+    email: user.email || '',
+    confirmEmail: user.email || '',
+    telefono: user.telefono || '',
+    direccion: user.direccion || '',
+    codigoPostal: user.codigoPostal || '',
+    userName: user.userName || '',
     password: "",
     confirmPassword: "",
-    rol: user.roles[0].role,
+    rol: user.roles && user.roles[0] ? user.roles[0].role : "",
   };
   const handleFormSubmit = async (values) => {
-    values.preventDefault()
 
 
-    /* try {
-      await axios.put(`${import.meta.env.VITE_URL}/api/users/register`, //la direccion debe cambiar segun la api por lo tantocon esta direccion se estaria como creando un nuevo usuario y no editando
-        {
-          nombre: values.target[0].value,
-          apellido: values.target[1].value,
-          email: values.target[2].value,
-          confirmEmail: values.target[3].value,
-          telefono: values.target[4].value,
-          direccion: values.target[5].value,
-          codigoPostal: values.target[6].value,
-          userName: values.target[7].value,
-          password: values.target[8].value,
-          confirmPassword: values.target[9].value,
-          roles: [roleSelected],
-        }).then((response) => {
-          console.log(response);
-        }).catch((error) => {
-          console.log(error);
-        })
+    try {
+      Swal.fire({
+        title: "Crear usuario",
+        text: "Esta seguro que desea crear un nuevo usuario",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const response = await axios.post(
+              `${import.meta.env.VITE_URL}/api/users/update`,
+              {
+                nombre: values.nombre,
+                apellido: values.apellido,
+                email: values.email,
+                telefono: values.telefono,
+                direccion: values.direccion,
+                codigoPostal: values.codigoPostal,
+                userName: values.userName,
+                password: values.password,
+                roles: [roleSelected],
+              }
+            );
+
+            if (response.status === 201) {
+              Swal.fire(
+                "¡Usuario Registrado!",
+                "El usuario ha sido registrado exitosamente.",
+                "success"
+              );
+            } else {
+              Swal.fire(
+                "Error",
+                "Hubo un error al registrar el usuario en la base de datos.",
+                "error"
+              );
+            }
+          } catch (error) {
+            console.error("Error al registrar el usuario:", error);
+            // SweetAlert2 para mostrar un mensaje de error
+            Swal.fire(
+              "Error",
+              "Hubo un error al registrar el usuario.",
+              "error"
+            );
+          }
+        }
+      });
     } catch (error) {
       console.log(error);
-    } */
+    }
   };
   return (
 
 
-    <Formik initialValues={initialValues} validationSchema={validationSchema}>
+    <Formik initialValues={initialValues} validationSchema={validationSchema}  onSubmit={handleFormSubmit}>
       <Form
-        className="container mt-5 bg-white p-4 rounded"
-        onSubmit={handleFormSubmit}
+        className="container mt-5 p-4 rounded shadow text-white"
+        style={{ backgroundColor: '#01939c' }}
       >
-        <div className="d-flex justify-content-center mb-4">
+        <div className="welcome-message text-center mb-4">
+          <h3>Formulario de registro</h3>
+        </div>
+        <div className="d-flex d-none d-sm-block text-center mb-4">
           <img
             src={logo}
             alt="Logo"
             className="img-fluid rounded-circle mt-4"
-            style={{ maxWidth: "150px", width: "100%", margin: "0 auto" }}
+            style={{ maxWidth: "300px", width: "100%", margin: "0 auto" }}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="nombre">Nombre:</label>
-          <Field
-            type="text"
-            id="nombre"
-            name="nombre"
-            className="form-control"
-          />
-          <ErrorMessage name="nombre" component="div" className="text-danger" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="apellido">Apellido:</label>
-          <Field
-            type="text"
-            id="apellido"
-            name="apellido"
-            className="form-control"
-          />
-          <ErrorMessage
-            name="apellido"
-            component="div"
-            className="text-danger"
-          />
+        <div className="form-group row">
+          <div className="col-md-6  mb-md-3 mb-sm-0 ">
+            <label htmlFor="nombre">Nombre:</label>
+            <Field
+              type="text"
+              id="nombre"
+              name="nombre"
+              className="form-control"
+            />
+            <ErrorMessage
+              name="nombre"
+              component="div"
+              className="text-danger"
+            />
+          </div>
+          <div className="col-md-6 mt-sm-0">
+            <label htmlFor="apellido">Apellido:</label>
+            <Field
+              type="text"
+              id="apellido"
+              name="apellido"
+              className="form-control"
+            />
+            <ErrorMessage
+              name="apellido"
+              component="div"
+              className="text-danger"
+            />
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="email">Correo electrónico:</label>
@@ -237,9 +277,11 @@ const RegisterEdit = () => {
           <ErrorMessage name="rol" component="div" className="text-danger" />
         </div>
 
-        <button type="submit" className="btn btn-primary mt-2">
-          Registrarse
-        </button>
+        <div className="form-group text-center">
+          <button type="submit" className="btn btn-dark mt-2 btn-lg"style={{ width: "70%" }}>
+            Actualizar
+          </button>
+        </div>
       </Form>
     </Formik>
 
