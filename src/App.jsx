@@ -1,21 +1,21 @@
-import { useState } from "react";
+// import { Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import UserContext from "./context/UserContext";
-import Routes from "./routes/Routes";
+import "bootstrap/dist/css/bootstrap.css"
 import Navbar from "./components/Header/Navbar";
+import AppRoutes from "./routes/Routes";
 import FooterLayout from "./components/Footer/FooterLayouts";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
-      <UserContext>
-        <div className="Navbar"><Navbar /></div>
-        <div className="body"><Routes /></div>
-        <div className="footer"><FooterLayout /></div>
-      </UserContext>
+    
+    {/* <Router> */}
+    <Navbar/>
+    <AppRoutes/>  
+    <FooterLayout/>
+    {/* </Router> */}
+    
     </>
   );
 }
