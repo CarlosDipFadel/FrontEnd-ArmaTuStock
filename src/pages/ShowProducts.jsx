@@ -4,41 +4,12 @@ import Table from '../components/Table/Table';
 
 const ShowProducts = () => {
 
-    const [items, setItems] = useState([])
-
-    useEffect(() => {
-        axiosInstance.get('/')
-            .then(r => {
-                if (r.status === 200) {
-                    setItems(r.data)
-                } else {
-                    throw new Error(`[${r.status}]ERROR en la solicitud`)
-                }
-            })
-            .catch(err => console.log(err))
-    }, []);
+    const [items, setItems] = useState([]);
 
     const editItem = (id, data) => {
-        console.log('editando producto');
+        console.log(data);
         // TODO aca vamos a hacer un put
-        axiosInstance.put(`/${id}`, data)
-            .then(r => {
-                if (r.status === 200) {
-                    const updateItems = items.map(item => {
-                        if (item.id === r.data.id) {
-                            return r.data
-                        }
-                        return item
-                    })
-                    setItems(updateItems)
-                } else {
-                    throw new Error(`[ERROR ${r.status}] Error en la solicitud`)
-                }
-
-            })
-            .catch(err => console.log(err))
-
-    }
+    } 
 
     return (
         <div>

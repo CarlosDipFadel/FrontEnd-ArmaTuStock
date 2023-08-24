@@ -4,7 +4,6 @@ import * as Yup from 'yup' ;
 import Button from 'react-bootstrap/Button';
 import FormBs from 'react-bootstrap/Form';
 import './formulario.css'
-import { axiosInstance } from '../../services/axios.config';
 
 const FormCreateProduct = () => {
 
@@ -23,26 +22,16 @@ const FormCreateProduct = () => {
         stock: Yup.number().required('el campo es obligatorio'),
         price: Yup.number().required('el campo es obligatorio')
     })
+    const submit = (values) => {
+        console.log("adsdad");
+        console.log(values);
+    }
     return (
         <div className='container'>
             <Formik 
                 initialValues={initialCredentials}
                 validationSchema={formSchema}
-                onSubmit={(values, {setSubmitting})  => {
-                    // same shape as initial values
-                    console.log(values);
-                    axiosInstance.post('/', values)
-                    .then(r => {
-                        if (r.status == 201) {
-                            console.log(r)
-                            setSubmitting(false)
-                        }else{
-                            throw new Error(`[${r.status}]error en la solicitud`)
-                        }
-                    })
-                    .catch( err => console.log(err))
-                    
-                }}
+                onSubmit={submit}
             >
                 {({values, errors, touched, isSubmitting}) => (
                         <Form>

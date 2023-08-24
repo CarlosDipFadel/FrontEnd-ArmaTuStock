@@ -1,24 +1,18 @@
-
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes } from 'react-router-dom';
-import AppRoutes from './routes/Routes'
-import FooterLayout from "./components/Footer/FooterLayouts";
-import Header from "./components/Header/Navbar"
-
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import Routes from "./routes/Routes";
+import FooterLayout from "./components/footer/FooterLayouts";
+import Header from "./components/header/Header";
+import UserContext  from "./context/UserContext";
 
 function App() {
-
   return (
     <>
-    
-    <Routes> 
-    <AppRoutes/>  
-    <FooterLayout />
-    <Header />
-     </Routes> 
-    
+      <UserContext>
+        <div className="header"> <Header /></div>
+        <div className="body"> <Routes/></div>
+        <div className="footer"><FooterLayout /></div>
+      </UserContext>
     </>
   );
 }
