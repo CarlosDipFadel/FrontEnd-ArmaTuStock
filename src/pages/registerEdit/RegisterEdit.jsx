@@ -12,12 +12,12 @@ import {UsuariosContext} from "../../context/UserContext"
 
 const RegisterEdit = () => {
   const location = useLocation();
-  console.log(location.state);
   const [roles, setRoles] = useState([]);
   const [roleSelected, setRoleSelected] = useState()
   const [user, setUser] = useState(location.state || {});
 
-  const {getRoles} = useContext(UsuariosContext)
+  const {getRoles, updateUser} = useContext(UsuariosContext)
+
   useEffect(() => {
     if (user.roles && user.roles.length > 0) {
       setRoleSelected(user.roles[0].role);
@@ -27,14 +27,6 @@ const RegisterEdit = () => {
     }).catch((error)=>{
       console.log(error);
     })
-    /* axios.get(`${import.meta.env.VITE_URL}/api/users/getRoles`)
-      .then((response) => {
-        setRoles(response.data);
-        
-      })
-      .catch((error) => {
-        console.error("Error al obtener roles:", error);
-      }); */
   }, []);
 
   const initialValues = {
@@ -51,47 +43,47 @@ const RegisterEdit = () => {
     rol: user.roles && user.roles[0] ? user.roles[0].role : "",
   };
   const handleFormSubmit = async (values) => {
-
-
     try {
       Swal.fire({
         title: "Crear usuario",
-        text: "Esta seguro que desea crear un nuevo usuario",
+        text: "Esta seguro que desea modificar al usuario",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "OK!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          try {
-            const response = await axios.post(
-              `${import.meta.env.VITE_URL}/api/users/update`,
-              {
-                nombre: values.nombre,
-                apellido: values.apellido,
-                email: values.email,
-                telefono: values.telefono,
-                direccion: values.direccion,
-                codigoPostal: values.codigoPostal,
-                userName: values.userName,
-                password: values.password,
-                roles: [roleSelected],
-              }
-            );
+          try { 
+            const userDB = {
+              _id: user._id,
+              nombre: values.nombre,
+              apellido: values.apellido,
+              email: values.email,
+              telefono: values.telefono,
+              direccion: values.direccion,
+              codigoPostal: values.codigoPostal,
+              userName: values.userName,
+              password: values.password,
+              roles: [roleSelected],
+            };
 
-            if (response.status === 201) {
-              Swal.fire(
-                "¡Usuario Registrado!",
-                "El usuario ha sido registrado exitosamente.",
-                "success"
-              );
-            } else {
-              Swal.fire(
-                "Error",
-                "Hubo un error al registrar el usuario en la base de datos.",
-                "error"
-              );
-            }
+            updateUser(userDB).then((response)=>{
+              if (response.status === 201) {
+                Swal.fire(
+                  response.data,
+                  "El usuario ha sido registrado exitosamente.",
+                  "success"
+                );
+              } else {
+                console.log("assdasdasdasdasd");
+                Swal.fire(
+                  "Error",
+                  "Hubo un error al registrar el usuario en la base de datos.",
+                  "error"
+                );
+              }
+            })
+
           } catch (error) {
             console.error("Error al registrar el usuario:", error);
             // SweetAlert2 para mostrar un mensaje de error

@@ -21,7 +21,7 @@ export const validationSchema = Yup.object().shape({
     .max(255, "La dirección no debe exceder los 255 caracteres"),
   codigoPostal: Yup.string()
     .required("El código postal es obligatorio")
-    .matches(/^\d{5}$/, "Ingrese un código postal válido de 5 dígitos"),
+    .matches(/^\d{4}$/, "Ingrese un código postal válido de 4 dígitos"),
   userName: Yup.string()
     .required("El nombre de usuario es obligatorio")
     .min(4, "El nombre de usuario debe tener al menos 4 caracteres")

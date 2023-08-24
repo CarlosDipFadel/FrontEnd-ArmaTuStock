@@ -39,19 +39,18 @@ const UserContext = ({ children }) => {
         }
     }
 
-    const updateUser = async () =>{
-
+    const updateUser = async (user) =>{
         try{
-
-            const response= await axios.put(`${import.meta.env.VITE_URL}/api/users/update`,)
-             return response.data   
+            const response = await axios.post(`${import.meta.env.VITE_URL}/api/users/update`, user)
+            console.log(response);
+            return response   
         }catch (error) {
             return error;
         }
     }
 
     return (
-        <UsuariosContext.Provider value={{ usuarios, setUsuarios, loginUser, getUsuarios, getRoles }}>
+        <UsuariosContext.Provider value={{ usuarios, setUsuarios, loginUser, getUsuarios, getRoles, updateUser }}>
             {children}
         </UsuariosContext.Provider>
     )
