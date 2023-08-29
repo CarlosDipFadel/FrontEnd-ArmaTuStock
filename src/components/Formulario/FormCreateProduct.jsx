@@ -12,16 +12,16 @@ const FormCreateProduct = () => {
         name: '',
         description: '',
         image: '',
-        stock: '',
-        price: ''
+        stock: 0,
+        price: 0
     }
 
     const formSchema = Yup.object().shape({
-        name: Yup.string().min(4, 'nombre demasiado corto').max(20, 'nombre demasiado largo').required('el campo el obligatorio'),
-        description:  Yup.string().min(10, 'descripcion demasiado corta').max(100, 'desciprcion demasiado largo').required('el campo el obligatorio'),
+        name: Yup.string().min(4, 'nombre demasiado corto').max(20, 'nombre demasiado largo').required('el campo es obligatorio'),
+        description:  Yup.string().min(6, 'descripcion demasiado corta').max(100, 'descripcion demasiado larga').required('el campo es obligatorio'),
         image: Yup.string().required('el campo es obligatorio'),
         stock: Yup.number().required('el campo es obligatorio'),
-        price: Yup.number().required('el campo es obligatorio')
+        price: Yup.number().required('el campo es obligatorio') 
     })
     const submit = (values) => {
         console.log(values);
@@ -41,11 +41,16 @@ const FormCreateProduct = () => {
                 validationSchema={formSchema}
                 onSubmit={submit}
             >
-                {({values, errors, touched, isSubmitting}) => (
+                {
+                    ({values, errors, touched, isSubmitting}) => (
                         <Form>
                             <FormBs.Group className='mb-3'>
                                 <label htmlFor='name'> Nombre del producto </label>
+<<<<<<< HEAD
+                                <Field id='name' type='text' placeholder='Destornillador' name='name' className='form-control field-input'/>
+=======
                                 <Field id='nombre' type='text' placeholder='Buzo' name='name' className='form-control field-input'/>
+>>>>>>> ca9256383f4fb3921a1aef8564addb22bc600d1f
                                 {
                                     errors.name && touched.name && (
                                     <ErrorMessage name='name' component='div'></ErrorMessage>  
@@ -55,7 +60,11 @@ const FormCreateProduct = () => {
 
                             <FormBs.Group className='mb-3'>
                                 <label htmlFor='description'> descripcion  </label>
+<<<<<<< HEAD
+                                <Field id='description' type='text' placeholder='Destornillador torx 8' name='description' className='form-control field-input'/>
+=======
                                 <Field id='descripcion' type='text' placeholder='Buzo comodo ideal para invierno' name='description' className='form-control field-input'/>
+>>>>>>> ca9256383f4fb3921a1aef8564addb22bc600d1f
                                 {
                                     errors.description && touched.description && (
                                     <ErrorMessage name='description' component='div'></ErrorMessage>  
