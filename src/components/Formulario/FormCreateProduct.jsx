@@ -4,6 +4,7 @@ import * as Yup from 'yup' ;
 import Button from 'react-bootstrap/Button';
 import FormBs from 'react-bootstrap/Form';
 import './formulario.css'
+import axios from 'axios'
 
 const FormCreateProduct = () => {
 
@@ -23,8 +24,15 @@ const FormCreateProduct = () => {
         price: Yup.number().required('el campo es obligatorio')
     })
     const submit = (values) => {
-        console.log("adsdad");
         console.log(values);
+        axios.post(`${import.meta.env.VITE_URL}/api/products/register/product`,{
+            nombre: values.name,
+            descripcion: values.description,
+            stock: values.stock,
+            precio: values.price
+        }).catch((error)=>{
+            console.log(error);
+        })
     }
     return (
         <div className='container'>
@@ -37,7 +45,7 @@ const FormCreateProduct = () => {
                         <Form>
                             <FormBs.Group className='mb-3'>
                                 <label htmlFor='name'> Nombre del producto </label>
-                                <Field id='name' type='text' placeholder='Buzo' name='name' className='form-control field-input'/>
+                                <Field id='nombre' type='text' placeholder='Buzo' name='name' className='form-control field-input'/>
                                 {
                                     errors.name && touched.name && (
                                     <ErrorMessage name='name' component='div'></ErrorMessage>  
@@ -47,7 +55,7 @@ const FormCreateProduct = () => {
 
                             <FormBs.Group className='mb-3'>
                                 <label htmlFor='description'> descripcion  </label>
-                                <Field id='description' type='text' placeholder='Buzo comodo ideal para invierno' name='description' className='form-control field-input'/>
+                                <Field id='descripcion' type='text' placeholder='Buzo comodo ideal para invierno' name='description' className='form-control field-input'/>
                                 {
                                     errors.description && touched.description && (
                                     <ErrorMessage name='description' component='div'></ErrorMessage>  
@@ -74,7 +82,7 @@ const FormCreateProduct = () => {
                             </FormBs.Group>
                             <FormBs.Group className='mb-3'> 
                                 <label htmlFor='price'> precio </label>
-                                <Field id='price' type='number' placeholder='8000' name='price' className='form-control field-input'/>
+                                <Field id='precio' type='number' placeholder='8000' name='price' className='form-control field-input'/>
                                 {
                                     errors.price && touched.price && (
                                     <ErrorMessage name='price' component='div'></ErrorMessage>  

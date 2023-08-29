@@ -7,5 +7,19 @@
   }
   .footer{
     background-color: #C2DEDC;
-    color: black;
+    
   }
+  .form {
+    background-color: #C2DEDC;
+  }
+
+.input,
+.textarea,
+.select {
+  background-color: #ECE5C7;
+}
+
+.button[type="submit"] {
+  background-color: #CDC2AE;
+  color: #116A7B;
+}

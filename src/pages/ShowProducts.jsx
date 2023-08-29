@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { axiosInstance } from '../services/axios.config';
 import Table from '../components/Table/Table';
+import axios from 'axios';
 
 const ShowProducts = () => {
-
     const [items, setItems] = useState([]);
+    useEffect(() => {
+        axios.get('/getProducts')
+        .then(response => {
+            // Actualizar el estado con los productos obtenidos del backend
+            setItems(response.data);
+        });
+    }, []);
 
     const editItem = (id, data) => {
         console.log(data);
-        // TODO aca vamos a hacer un put
-    } 
+        axios.put('/updateProduct', {
+            id: id,
+            data: data
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
 
     return (
         <div>

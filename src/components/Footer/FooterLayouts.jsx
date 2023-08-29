@@ -15,7 +15,7 @@ const FooterLayout = () => {
     <MDBFooter className="text-center text-lg-start text-primary">
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div className="me-5 d-none d-lg-block">
-          <span>Conéctate con nosotras en las redes sociales:</span>
+          <span>Conéctate con nosotros en las redes sociales:</span>
         </div>
 
         <div>
