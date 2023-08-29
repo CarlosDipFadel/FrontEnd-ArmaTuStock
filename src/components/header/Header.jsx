@@ -6,6 +6,7 @@ const Header = () => {
         <Navbar expand="lg"> 
             <Container>
                 <Navbar.Brand href="/home">Arma tu stock</Navbar.Brand>
+                
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -20,13 +21,7 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/registerEdit">Editar usuarios</Nav.Link>
                     </Nav>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/create">Crear Producto</Nav.Link>
-                    </Nav>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/show">Listado Producto</Nav.Link>
-                    </Nav>
-                    <Button variant='primary'>Login</Button>
+                  <Button variant='primary'>Login</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
