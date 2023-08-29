@@ -1,43 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { axiosInstance } from '../services/axios.config';
 import Table from '../components/Table/Table';
+import axios from 'axios';
 
 const ShowProducts = () => {
-
-    const [items, setItems] = useState([])
-
+    const [items, setItems] = useState([]);
     useEffect(() => {
-        axiosInstance.get('/')
-            .then(r => {
-                if (r.status === 200) {
-                    setItems(r.data)
-                } else {
-                    throw new Error(`[${r.status}]ERROR en la solicitud`)
-                }
-            })
-            .catch(err => console.log(err))
+        axios.get('/getProducts')
+        .then(response => {
+            // Actualizar el estado con los productos obtenidos del backend
+            setItems(response.data);
+        });
     }, []);
 
     const editItem = (id, data) => {
-        console.log('editando producto');
-        // TODO aca vamos a hacer un put
-        axiosInstance.put(`/${id}`, data)
-            .then(r => {
-                if (r.status === 200) {
-                    const updateItems = items.map(item => {
-                        if (item.id === r.data.id) {
-                            return r.data
-                        }
-                        return item
-                    })
-                    setItems(updateItems)
-                } else {
-                    throw new Error(`[ERROR ${r.status}] Error en la solicitud`)
-                }
-
-            })
-            .catch(err => console.log(err))
-
+        console.log(data);
+        axios.put('/updateProduct', {
+            id: id,
+            data: data
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        });
     }
 
     return (

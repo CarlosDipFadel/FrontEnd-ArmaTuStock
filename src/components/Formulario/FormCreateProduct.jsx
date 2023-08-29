@@ -4,7 +4,7 @@ import * as Yup from 'yup' ;
 import Button from 'react-bootstrap/Button';
 import FormBs from 'react-bootstrap/Form';
 import './formulario.css'
-import { axiosInstance } from '../../services/axios.config';
+import axios from 'axios'
 
 const FormCreateProduct = () => {
 
@@ -23,33 +23,34 @@ const FormCreateProduct = () => {
         stock: Yup.number().required('el campo es obligatorio'),
         price: Yup.number().required('el campo es obligatorio') 
     })
+    const submit = (values) => {
+        console.log(values);
+        axios.post(`${import.meta.env.VITE_URL}/api/products/register/product`,{
+            nombre: values.name,
+            descripcion: values.description,
+            stock: values.stock,
+            precio: values.price
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
     return (
         <div className='container'>
             <Formik 
                 initialValues={initialCredentials}
                 validationSchema={formSchema}
-                onSubmit={(values, {setSubmitting})  => {
-                    // same shape as initial values
-                    console.log(values);
-                    axiosInstance.post('/', values)
-                    .then(r => {
-                        if (r.status == 201) {
-                            console.log(r)
-                            setSubmitting(false)
-                        }else{
-                            throw new Error(`[${r.status}]error en la solicitud`)
-                        }
-                    })
-                    .catch( err => console.log(err))
-                    
-                }}
+                onSubmit={submit}
             >
                 {
                     ({values, errors, touched, isSubmitting}) => (
                         <Form>
                             <FormBs.Group className='mb-3'>
                                 <label htmlFor='name'> Nombre del producto </label>
+<<<<<<< HEAD
                                 <Field id='name' type='text' placeholder='Destornillador' name='name' className='form-control field-input'/>
+=======
+                                <Field id='nombre' type='text' placeholder='Buzo' name='name' className='form-control field-input'/>
+>>>>>>> ca9256383f4fb3921a1aef8564addb22bc600d1f
                                 {
                                     errors.name && touched.name && (
                                     <ErrorMessage name='name' component='div'></ErrorMessage>  
@@ -59,7 +60,11 @@ const FormCreateProduct = () => {
 
                             <FormBs.Group className='mb-3'>
                                 <label htmlFor='description'> descripcion  </label>
+<<<<<<< HEAD
                                 <Field id='description' type='text' placeholder='Destornillador torx 8' name='description' className='form-control field-input'/>
+=======
+                                <Field id='descripcion' type='text' placeholder='Buzo comodo ideal para invierno' name='description' className='form-control field-input'/>
+>>>>>>> ca9256383f4fb3921a1aef8564addb22bc600d1f
                                 {
                                     errors.description && touched.description && (
                                     <ErrorMessage name='description' component='div'></ErrorMessage>  
@@ -86,7 +91,7 @@ const FormCreateProduct = () => {
                             </FormBs.Group>
                             <FormBs.Group className='mb-3'> 
                                 <label htmlFor='price'> precio </label>
-                                <Field id='price' type='number' placeholder='8000' name='price' className='form-control field-input'/>
+                                <Field id='precio' type='number' placeholder='8000' name='price' className='form-control field-input'/>
                                 {
                                     errors.price && touched.price && (
                                     <ErrorMessage name='price' component='div'></ErrorMessage>  
