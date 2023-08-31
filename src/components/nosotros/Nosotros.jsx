@@ -27,7 +27,7 @@ function GroupExample() {
       title: "Angel Pastrana",
     },
     {
-      src: "https://img.freepik.com/premium-vector/cartoon-young-man-icon_24908-23705.jpg", 
+      src: "https://img.freepik.com/vector-premium/diseno-ilustracion-vector-personaje-avatar-hombre-joven_24877-18519.jpg?w=740", 
       title: "Lucas Ranalleta",
     },
     {
