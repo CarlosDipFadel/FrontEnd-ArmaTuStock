@@ -1,9 +1,21 @@
 .Encabezado {
-    background-color: #ECE5C7;
-    color: #CDC2AE;
-  }
-  
-  .Encabezado img {
-    width: 200px;
-    height: 200px;
-  }
+  background-color: #ECE5C7;
+  color: #CDC2AE;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.Card1 {
+  margin: 10px auto;
+  border: 2px solid #CDC2AE;
+}
+
+.Card2 {
+  margin: 10px auto;
+  border: 2px solid #ECE5C7;
+}
+
+.Button {
+  background-color: #CDC2AE;
+  color: #ECE5C7;
+}

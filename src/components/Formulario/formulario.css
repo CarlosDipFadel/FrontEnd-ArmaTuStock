@@ -1,8 +1,27 @@
-.field-input{
-   
-    color: #fff 
-}
-
-.field-input:focus{
-    background-color: #CDC2AE ;
-}
+.container {
+    background-color: #C2DEDC;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  .field-input {
+    border: none;
+    border-bottom: 2px solid #8AB9B5;
+    outline: none;
+  }
+  
+  .field-input:focus {
+    border-bottom-color: #4F6D7A;
+  }
+  
+  .btn-primary {
+    background-color: #4F6D7A;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3E5C6E;
+  }
+  
