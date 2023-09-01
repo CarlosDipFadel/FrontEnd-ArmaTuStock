@@ -1,21 +1,49 @@
 .Encabezado {
-  background-color: #ECE5C7;
-  color: #CDC2AE;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
+  display: flow-root;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-image:url();
+  color: white;
 }
 
 .Card1 {
   margin: 10px auto;
-  border: 2px solid #CDC2AE;
+  border-radius: 10px;
+  background-color: #ECE5C7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  left: 0px;
+  width: 140px;
+  height: 100px;
+  transition: transform .2s;
+}
+
+.Card1:hover {
+  transform: scale(1.2);
 }
 
 .Card2 {
   margin: 10px auto;
-  border: 2px solid #ECE5C7;
+  border-radius: 10px;
+  background-color: #ECE5C7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  left: 0px;
+  width: 140px;
+  height: 100px;
+  transition: transform .2s;
+}
+
+.Card2:hover {
+  transform: scale(1.2);
 }
 
 .Button {
   background-color: #CDC2AE;
   color: #ECE5C7;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.Button:hover {
+  background-color: #B9A98F;
 }

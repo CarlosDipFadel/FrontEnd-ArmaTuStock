@@ -8,29 +8,27 @@ import './Home.css';
 
 const Bienvenido = () => {
     return (
-        <div className='Encabezado' >
-            <h1>Bienvenido a la Ferretería</h1>
-            <div>
+        <div className=‘Encabezado’> <h1 style=“color: #C2DEDC; font-family: ‘Roboto’, sans-serif; text-shadow: 2px 2px 4px #000000;”>Bienvenido a la Ferretería</h1> <div style=“background-image: url(https://distribuidortruper.mx/wp-content/uploads/2022/12/Productos-de-ferreteria.jpg); background-size: cover; height: 200px; width: 100%;”></div> </div>
                 <container fluid>
                     <row>
                         <col1>
                             <Card className='Card1' style={{ width: '18rem' }} fluid>
-                                <Card.Img variant="top" src="holder.js/100px180"  />
+                                <Card variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title>Aqui estan los productos</Card.Title>
-                                    <Button href="/show" variant="link">
-                                        < img alt="Listado de productos" fluid />
+                                    <Card.Title className='CardTitle' />
+                                    <Button className='boton1' href="/show" variant="link">
+                                        <p>Listado de productos </p>
                                     </Button>
                                 </Card.Body>
                             </Card>
                         </col1>
                         <col2>
-                            <Card className='Card2' style={{ width: '18rem'}} fluid>
-                                <Card.Img variant="top" src="holder.js/100px180"  />
+                            <Card className='Card2' style={{ width: '18rem' }} fluid>
+                                <Card variant="top" src="holder.js/100px180" />
                                 <Card.Body>
-                                    <Card.Title>Crear producto</Card.Title>
-                                   <Button href="/Create" variant="link">
-                                        <img alt="Crear producto" fluid />
+                                    <Card.Title className='CardTitle' />
+                                    <Button href="/Create" variant="link" >
+                                        <p>Crear producto </p>
                                     </Button>
                                 </Card.Body>
                             </Card>
