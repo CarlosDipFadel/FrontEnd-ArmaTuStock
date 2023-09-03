@@ -5,52 +5,6 @@ import './Home.css';
 
 const Bienvenido= () => {
     return (
-        <div className="text-center mt-4" >
-        <h1>Bienvenido a la Ferretería!</h1>
-        <br></br>
-        <div className="row justify-content-center">
-        <div className="col-md-3">
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="/assets/ferre1.jpg" />
-            <Card.Body>
-              <Card.Title>Lista de productos</Card.Title>
-              <Card.Text>
-                Aqui podra visualizar todos los productos con los que contamos actualmente en stock
-              </Card.Text>
-              <Button variant="primary" href="/show" > 
-              < img alt="Lista de productos" fluid />
-            </Button>
-            </Card.Body>
-          </Card>
-        </div>
-  
-        <div className="col-md-3">
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="/assets/ferre2.jpg" />
-            <Card.Body>
-              <Card.Title>Agregar producto</Card.Title>
-              <Card.Text>
-                Aqui podra agregar nuevos productos al inventario, tambien ver precio y la categoria
-              </Card.Text>
-              <Button variant="primary" href="/Create" >
-                    <img alt="Agregar producto" fluid />
-              </Button>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
-      </div>
-    );
-  }
-  
-  export default Bienvenido;
-
-
-
-
-/*
-const Bienvenido = () => {
-    return (
         <div className='Encabezado' >
             <h1>Bienvenido a la Ferretería</h1>
             <div>
@@ -83,10 +37,10 @@ const Bienvenido = () => {
             </div>
         </div>
     );
-};
+  }
+  
+  export default Bienvenido;
 
 
 
 
-export default Bienvenido;
-*/
