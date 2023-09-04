@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
+import './Nosotros.css'
 
 function GroupExample() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -40,7 +41,7 @@ function GroupExample() {
     <div>
       <div
         className="description"
-        style={{ backgroundColor: "", padding: "20px" }}
+       
       >
         <p
           style={{
