@@ -1,140 +1,31 @@
 import React from "react";
+import { MDBFooter, MDBContainer } from "mdb-react-ui-kit";
 
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBBtn,
-} from "mdb-react-ui-kit";
-
-const FooterLayout = () => {
+export default function App() {
   return (
-    <MDBFooter className="text-center text-lg-start text-white">
-      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <div className="me-5 d-none d-lg-block">
-          <span>Conéctate con nosotras en las redes sociales:</span>
-        </div>
-
-        <div>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="facebook-f" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="twitter" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="google" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="instagram" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="linkedin" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="github" />
-          </a>
-        </div>
-      </section>
-
-      <section className="">
-        <MDBContainer className="text-center text-md-start mt-5">
-          <MDBRow className="mt-3">
-            <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
-                <MDBIcon icon="gem" className="me-3" />
-                #ArmaTuStock
-              </h6>
-              <p>
-                Somos un grupo de apasionados por el desarrollo de software y la
-                creación de soluciones tecnológicas innovadoras para resolver
-                los desafíos del mundo actual.
-              </p>
-            </MDBCol>
-
-            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Productos</h6>
-              <p>
-                <a href="#!" className="text-reset">
-                  Quienes Somos
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Prensa
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Proveedores
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Inversores
-                </a>
-              </p>
-            </MDBCol>
-
-            <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Enlaces útiles</h6>
-              <p>
-                <a href="#!" className="text-reset">
-                  Precios
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Ajustes
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Pedidos
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Ayuda
-                </a>
-              </p>
-            </MDBCol>
-
-            <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Contacto</h6>
-              <p>
-                <MDBIcon icon="home" className="me-2" />
-                Gral. Paz 576, T4000 SM de Tucumán, Tucuman
-              </p>
-              <p>
-                <MDBIcon icon="envelope" className="me-3" />
-                info@armatustock.com
-              </p>
-              <p>
-                <MDBIcon icon="phone" className="me-3" /> + 54 381 567 88
-              </p>
-              <p>
-                <MDBIcon icon="print" className="me-3" /> + 54 381 567 89
-              </p>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-      </section>
+    <MDBFooter
+      className="text-center text-white"
+      style={{ backgroundColor: "#116A7B" }}
+    >
+      <MDBContainer className="p-4"></MDBContainer>
+      <p>
+        En nuestro compromiso por brindarte la mejor gestión de inventario
+        posible, trabajamos incansablemente para mantener un control preciso y
+        eficiente de todos tus productos. Creemos que la clave para un negocio
+        exitoso radica en la capacidad de conocer y administrar con precisión lo
+        que tienes disponible. ¡Confía en nosotros para optimizar tu control de
+        stock y ayudarte a alcanzar tus metas empresariales
+      </p>
 
       <div
-        className="text-center p-4"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+        className="text-center p-3"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
-        © 2021 Copyright:
-        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
-          tustock.com
+        © 2023 Copyright:
+        <a className="text-white" href="/">
+          armatustock.com
         </a>
       </div>
     </MDBFooter>
   );
-};
-
-export default FooterLayout;
+}
