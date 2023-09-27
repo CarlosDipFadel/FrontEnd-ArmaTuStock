@@ -13,7 +13,8 @@ const FormCreateProduct = () => {
         description: '',
         image: '',
         stock: '',
-        price: ''
+        price: '',
+        category: ''
     }
 
     const formSchema = Yup.object().shape({
@@ -21,7 +22,8 @@ const FormCreateProduct = () => {
         description: Yup.string().min(10, 'descripcion demasiado corta').max(100, 'desciprcion demasiado largo').required('el campo el obligatorio'),
         image: Yup.string().required('el campo es obligatorio'),
         stock: Yup.number().required('el campo es obligatorio'),
-        price: Yup.number().required('el campo es obligatorio')
+        price: Yup.number().required('el campo es obligatorio'),
+        category: Yup.string().required('el campo es obligatorio')
     })
     const submit = (values) => {
         console.log(values);
@@ -29,7 +31,8 @@ const FormCreateProduct = () => {
             nombre: values.name,
             descripcion: values.description,
             stock: values.stock,
-            precio: values.price
+            precio: values.price,
+            category: values.category
         }).catch((error) => {
             console.log(error);
         })
@@ -71,6 +74,15 @@ const FormCreateProduct = () => {
                             {
                                 errors.image && touched.image && (
                                     <ErrorMessage name='image' component='div'></ErrorMessage>
+                                )
+                            }
+                        </FormBs.Group>
+                        <FormBs.Group className='mb-3'>
+                            <label htmlFor='category'> Categoria </label>
+                            <Field id='category' type='text' placeholder='category' name='category' className='form-control field-input' />
+                            {
+                                errors.category && touched.category && (
+                                    <ErrorMessage name='category' component='div'></ErrorMessage>
                                 )
                             }
                         </FormBs.Group>

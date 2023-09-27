@@ -13,7 +13,8 @@ const Modal = (props) => {
         description: props.item.description || '',
         image: props.item.image || '',
         stock: props.item.stock || '',
-        price: props.item.price || ''
+        price: props.item.price || '',
+        category: props.item.price || ''
     }
 
     const formSchema = Yup.object().shape({
@@ -21,7 +22,8 @@ const Modal = (props) => {
         description:  Yup.string().min(10, 'descripcion demasiado corta').max(100, 'desciprcion demasiado largo').required('el campo el obligatorio'),
         image: Yup.string().required('el campo es obligatorio'),
         stock: Yup.number().required('el campo es obligatorio'),
-        price: Yup.number().required('el campo es obligatorio')
+        price: Yup.number().required('el campo es obligatorio'),
+        category: Yup.string().required('el campo es obligatorio')
     })
 
 
@@ -76,6 +78,15 @@ const Modal = (props) => {
                                 {
                                     errors.image && touched.image && (
                                     <ErrorMessage name='image' component='div'></ErrorMessage>  
+                                    )
+                                }
+                            </FormBs.Group>
+                            <FormBs.Group className='mb-3'> 
+                                <label htmlFor='Category'> Categorias </label>
+                                <Field id='Category' type='text' placeholder='Category' name='Category' className='form-control field-input' onChange={handleChange}/>
+                                {
+                                    errors.Category && touched.Category && (
+                                    <ErrorMessage name='Category' component='div'></ErrorMessage>  
                                     )
                                 }
                             </FormBs.Group>

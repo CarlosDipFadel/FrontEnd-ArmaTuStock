@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <UserContext>
-        <div className="Header"> <Header /></div>
+        <div className="header"> <Header /></div>
         <div className="body"> <Routes/></div>
         <div className="footer"><FooterLayout /></div>
       </UserContext>

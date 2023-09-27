@@ -12,6 +12,7 @@ const Table = ({items, editItem}) => {
                     <th>Producto</th>
                     <th>Precio</th>
                     <th>Stock</th>
+                    <th>Categoria</th>
                     <th style={{textAlign:'center'}}>Modificarr</th>
                 </tr>
             </thead>

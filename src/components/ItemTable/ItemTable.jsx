@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Modal from '../Modal/Modal';
 
 const ItemTable = ({item, editItem}) => {
-    const {nombre, precio, stock, id} = item
+    const {nombre, precio, stock, id, category} = item
     const [modalShow, setModalShow] = useState(false);
 
 

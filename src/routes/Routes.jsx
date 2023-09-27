@@ -8,6 +8,7 @@ const Routes = () => {
     return (
         <>
             <Rutas>
+                <Route path='/home' element={<Home />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/create' element={<CreateProduct />} />
                 <Route path='/show' element={<ShowProducts />} />

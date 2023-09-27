@@ -3,14 +3,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-image:url();
-  color: white;
+  background-image: none;
+  color: ECE5C7;
 }
 
 .Card1 {
   margin: 10px auto;
   border-radius: 10px;
-  background-color: #ECE5C7;
+  background-image: url(https://live.staticflickr.com/65535/53218384636_4ac2eee44b_t.jpg);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   left: 0px;
   width: 140px;

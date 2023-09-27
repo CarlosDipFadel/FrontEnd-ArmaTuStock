@@ -12,22 +12,22 @@ const Bienvenido= () => {
                     <row>
                         <col1>
                             <Card className='Card1' style={{ width: '18rem' }} fluid>
-                                <Card.Img variant="top" src="holder.js/100px180"  />
+                                <Card.Img variant="top" />
                                 <Card.Body>
                                     <Card.Title>Aqui estan los productos</Card.Title>
                                     <Button href="/show" variant="link">
-                                        < img alt="Lista de productos" fluid />
+                                        
                                     </Button>
                                 </Card.Body>
                             </Card>
                         </col1>
                         <col2>
                             <Card className='Card2' style={{ width: '18rem'}} fluid>
-                                <Card.Img variant="top" src="holder.js/100px180"  />
+                                <Card.Img variant="top" />
                                 <Card.Body>
                                     <Card.Title>Crear producto</Card.Title>
                                    <Button href="/Create" variant="link">
-                                        <img alt="Crear producto" fluid />
+                                        
                                     </Button>
                                 </Card.Body>
                             </Card>
